@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지슬라이드</title>
+    <style>
+        img {
+            width: 400px;
+            height: 280px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+            <img src="./img/picture1.jpg" alt="rabbit01" id="photo">
+        </p>
+        <div>
+            <button onclick="gallery(0)">이전</button>
+            <button onclick="gallery(1)">다음</button>
+        </div>
+    </div>
+    <script>
+        /* 
+        현재 보여지는 이미지 번호를 저장하는 변수를 생성 (처음에는 1)
+        버튼 클릭시 실행되는 함수를 생성(매개변수 필요)
+        
+        function 함수 생성 (매개변수){
+        
+        만약 매개변수로 받은 값이 참이라면 
+            현재 이미지가 마지막 것이라면?
+                함수를 종료
+            현재 이미지가 마지막이 아니라면 num을 증가(현재 보여지는 이미지 번호를 저장하는 변수)
+        만약 매개변수로 받은 값이 거짓이라면 
+            현재 이미지가 첫번째라면 함수 종료
+                함수를 종료
+            현재 이미지가 첫번째가 아니라면
+                num을 감소
+        }
+
+        */
+
+        let num = 1;
+        function gallery(direct){
+            if(direct){
+                if(num == 8){
+                    return;
+                } else {
+                    num++;
+                }
+            } else {
+                if(num == 1){
+                    return;
+                } else {
+                    num--;
+                }
+            }
+
+            let imgTag = document.getElementById("photo");
+            imgTag.setAttribute("src","img/picture" + num + ".jpg");
+        }
+
+    </script>
+</body>
+</html>
