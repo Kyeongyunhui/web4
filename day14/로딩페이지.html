@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로딩페이지</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .loading_container{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+            rgb(255, 242, 171), 
+            rgb(146, 240, 146),
+            rgb(146, 240, 235)
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dots {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: balls 1.5s infinite linear;
+        }
+
+        .dot:nth-child(2){
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3){
+            animation-delay: 0.6s;
+        }
+
+        .loading_text {
+            font-size: 20px;
+            color: rgb(0, 199, 189);
+            font-weight: 600;
+            animation: text_fade 1.5s infinite linear;
+        }
+
+        @keyframes balls {
+            0% {
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(1.5);
+            }
+            /* 100%{
+                transform: scale(1);
+            } */
+        };
+
+        @keyframes text_fade {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        };
+
+        .hidden{
+            display: none;
+        };
+    </style>
+</head>
+<body>
+    <div class="loading_container">
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="loading_text">사이트를 준비중입니다.</div>
+    </div>
+    <section class="main_container">
+        <h1>로딩 완료!</h1>
+        <p>웹페이지 확인 가능</p>
+    </section>
+
+    <script>
+        function hideLoading (){
+            const loadingContanier = document.querySelector('.loading_container');
+            const mainContainer = document.querySelector('.main_container');
+
+            loadingContanier.classList.add('hidden');
+            mainContainer.style.display = "block";
+        }
+
+        window.onload = () => {
+            // onload : 페이지가 로드된 후! 여기서 로드한 웹페이지의 모든 리소스를 로드한 후 실행한다는 뜻
+            // setTimeout = 지정한 시간 후 1번 실행
+            // setInterval = 지정한 시간 간격으로 계속 실행
+            setTimeout(hideLoading,3000);
+        };
+
+        // document.addEventListener("DOMContentLoaded", function(){
+        //     // DOMContentLoaded : 도큐먼트인 브라우저가 로드된 직후
+        //     setTimeout(hideLoading,3000);
+        // })
+    </script>
+</body>
+</html>
